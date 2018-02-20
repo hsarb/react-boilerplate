@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "A Minimal library react boilerplate built with performance, testing, and ease of use in mind.",
+  "description": "A minimal library boilerplate for building react applications with flow, eslint and jest.",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
