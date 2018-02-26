@@ -6,7 +6,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import withStyles from 'material-ui/styles/withStyles';
 
-const styles = ({ mixins, palette }) => ({
+const styles = ({ mixins, palette }: { mixins: Object, palette: Object }) => ({
   root: {
     display: 'flex',
     alignItems: 'stretch',

@@ -15,20 +15,26 @@ let isDone = false;
 const app = express();
 const { output: { publicPath } } = webpackConfig;
 const webpackCompiler = webpack(webpackConfig);
+const middleware = webpackDevMiddleware(webpackCompiler, {
+  logLevel: 'silent',
+  publicPath,
+});
+const hotMiddleware = webpackHotMiddleware(webpackCompiler, {
+  reload: true,
+});
 
 console.log(chalk.blue('[React-Boilerplate] Setting up a development environment...'));
 
-app.use(
-  webpackDevMiddleware(webpackCompiler, {
-    logLevel: 'silent',
-    publicPath,
-  }),
-);
+app.use(middleware);
+app.use(hotMiddleware);
 
-app.use(
-  webpackHotMiddleware(webpackCompiler, {
-    reload: true,
-  }),
+app.get(
+  '*',
+  (req, res, next) => {
+    req.url = '/index.html';
+    return next();
+  },
+  middleware,
 );
 
 app.use('*', (req, res, next) => {
