@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import newView from '../../utils/newView';
 import Typography from 'material-ui/Typography';
 import withStyles from 'material-ui/styles/withStyles';
 
@@ -45,6 +44,4 @@ class Home extends Component<Props> {
   }
 }
 
-const StyledHome = withStyles(styles)(Home);
-
-export default newView(StyledHome);
+export default withStyles(styles)(Home);

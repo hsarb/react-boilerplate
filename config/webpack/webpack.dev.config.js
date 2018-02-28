@@ -73,12 +73,7 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({ name: 'manifest', minChunks: Infinity }),
     new HtmlWebpackPlugin({
       template: `${config.paths.src}/index.html`,
-      filename: 'index.html',
       inject: 'body',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-      },
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

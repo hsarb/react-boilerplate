@@ -2,14 +2,14 @@
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import AppFrame from '../AppFrame';
-import asyncComponent from '../../utils/asyncComponent';
+import asyncRoute from '../../utils/asyncRoute';
 import deepPurple from 'material-ui/colors/deepPurple';
 import grey from 'material-ui/colors/grey';
 import Helmet from 'react-helmet';
 import React from 'react';
 import Reboot from 'material-ui/Reboot';
 
-const Home = asyncComponent(() => import('../../views/Home'));
+const Home = asyncRoute(() => import('../../views/Home'));
 
 function App() {
   const theme = createMuiTheme({

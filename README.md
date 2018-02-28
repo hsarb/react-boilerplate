@@ -142,7 +142,7 @@ We have separated concerns for the the application into three main sections: Com
 
 **Making requests / prop assignments in views**
 
-You can fetch data, attach the response as props or pre assign props to a view using the `newView` HOC. This HOC will look for the `getInitalProps` static method that you can attach to a react class and execute it within the HOC's component lifecycle.
+You can fetch data, attach the response as props or pre assign props to a view using the `asyncRoute` HOC. This HOC will look for the `getInitialProps` static method that you can attach to a React class and execute it within the HOC's component lifecycle.
 
 ```
 static async getInitialProps() {
@@ -156,8 +156,6 @@ static async getInitialProps() {
 The return of this method will be assigned as props to the component calling this method, it will also bind a loading prop to the component as well, and will resolve with the fetch promise.
 
 ```
-import newView from '../../utils/newView';
-
 class App extends Component {
   static async getInitialProps() {
     const call = await fetch('http://localhost:3000/api');
@@ -175,7 +173,25 @@ class App extends Component {
   }
 }
 
-export default newView(App);
+export default App;
+```
+
+In order for prefetching / code splitting for a view to work, you should asynchronously load the route. We are using dynamic import syntax for that. You can also define the webpackChunkName if you desire, but it is not necessary.
+
+```
+import asyncRoute from './utils/asyncRoute';
+
+const Home = asyncRoute(() => import(/* webpackChunkName: "home" */ '../../views/Home'));
+
+function App() {
+  return (
+    <Switch>
+      <Route exact path="/" component={Home} />
+    </Switch>
+  );
+}
+
+export default App;
 ```
 
 **Styling**

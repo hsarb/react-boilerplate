@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home should render correctly 1`] = `
-<WithStyles(Home)
-  isLoading={true}
+<Home
+  classes={
+    Object {
+      "root": "Home-root-1",
+    }
+  }
   message="Hello world"
 />
 `;
